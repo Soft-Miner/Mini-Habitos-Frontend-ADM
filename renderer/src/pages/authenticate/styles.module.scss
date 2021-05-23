@@ -1,0 +1,17 @@
+@import '../../styles/theme/colors.scss';
+
+.container {
+  .animationContainer {
+    display: flex;
+    margin-bottom: 3rem;
+
+    > * {
+      width: 9.5rem !important;
+      height: auto !important;
+
+      @media (min-width: 48rem) {
+        width: 16rem !important;
+      }
+    }
+  }
+}

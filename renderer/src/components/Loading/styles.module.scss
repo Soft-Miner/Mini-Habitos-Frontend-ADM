@@ -1,0 +1,24 @@
+@import '../../styles/theme/colors.scss';
+
+.container {
+  background-color: $color-white;
+  height: 100%;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .animationContainer {
+    display: flex;
+
+    > * {
+      width: 9.5rem !important;
+      height: auto !important;
+
+      @media (min-width: 48rem) {
+        width: 16rem !important;
+      }
+    }
+  }
+}

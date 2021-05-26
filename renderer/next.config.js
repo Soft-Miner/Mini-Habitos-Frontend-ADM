@@ -24,7 +24,7 @@ module.exports = {
                 'https://fonts.gstatic.com',
               ],
               connectSrc: ["'self'", 'https://mini-habits-prod.herokuapp.com'],
-              imgSrc: ["'self'"],
+              imgSrc: ["'self'", 'blob:'],
               baseUri: 'self',
               formAction: 'self',
               frameAncestors: true,

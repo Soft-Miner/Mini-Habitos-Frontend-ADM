@@ -1,5 +1,9 @@
 @import '../../styles/theme/colors.scss';
 
 .container {
-  background-color: $color-white;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

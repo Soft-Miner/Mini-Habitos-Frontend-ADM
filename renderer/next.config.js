@@ -23,8 +23,16 @@ module.exports = {
                 'https://fonts.googleapis.com',
                 'https://fonts.gstatic.com',
               ],
-              connectSrc: ["'self'", 'https://mini-habits-prod.herokuapp.com'],
-              imgSrc: ["'self'"],
+              connectSrc: [
+                "'self'",
+                'https://mini-habits-prod.herokuapp.com',
+                'https://mini-habits-dev.herokuapp.com',
+                'https://mini-habitos-dev.s3-sa-east-1.amazonaws.com',
+              ],
+              imgSrc: [
+                "'self'",
+                'https://mini-habitos-dev.s3-sa-east-1.amazonaws.com',
+              ],
               baseUri: 'self',
               formAction: 'self',
               frameAncestors: true,

@@ -26,6 +26,7 @@
     "next-secure-headers": "^2.2.0",
     "npm": "^7.14.0",
     "react-lottie": "^1.2.3",
+    "react-svg": "^13.0.6",
     "webpack-subresource-integrity": "^1.5.2"
   },
   "devDependencies": {

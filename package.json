@@ -16,7 +16,7 @@
     "postinstall": "electron-builder install-app-deps",
     "prettier:write": "prettier --write renderer/src",
     "prettier:check": "prettier --check renderer/src",
-    "lint": "eslint --ext .ts,.tsx src"
+    "lint": "eslint --ext .ts,.tsx renderer/src"
   },
   "dependencies": {
     "axios": "^0.21.1",

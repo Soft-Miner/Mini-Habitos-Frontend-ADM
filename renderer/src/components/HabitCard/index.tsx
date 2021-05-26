@@ -12,7 +12,7 @@ const HabitCard = ({ name, icon, onClick }: HabitCardProps) => {
     <div onClick={onClick} className={styles.container}>
       <img width="64" height="64" src={icon} />
       <p>{name}</p>
-      <img src={'/icons/edit.svg'} />
+      <img src="/icons/edit.svg" />
     </div>
   );
 };

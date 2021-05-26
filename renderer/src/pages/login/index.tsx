@@ -19,33 +19,30 @@ function Home() {
     setLoading(true);
     const email = inputEmailRef.current.value;
     const password = inputPasswordRef.current.value;
-    if (!email) {
-      setError('Email é obrigatório.');
-      setLoading(false);
-    } else if (!password) {
-      setError('Senha é obrigatório.');
-      setLoading(false);
-    } else {
-      api
-        .post('/api/super_users/authenticate', {
-          email,
-          password,
-        })
-        .then((resposta) => {
-          const access_token = resposta.data.access_token;
-          const refresh_token = resposta.data.refresh_token;
-          setStorage('access_token', access_token);
-          setStorage('refresh_token', refresh_token);
-          router.push('/home');
-        })
-        .catch((errorResponse) => {
-          const errorMensage = errorResponse.response.status;
-          if (errorMensage === 401) {
-            setError('Email ou senha errado.');
-          }
-          setLoading(false);
-        });
-    }
+
+    /** @TODO validar com yup */
+
+    api
+      .post('/api/super_users/authenticate', {
+        email,
+        password,
+      })
+      .then((resposta) => {
+        const access_token = resposta.data.access_token;
+        const refresh_token = resposta.data.refresh_token;
+        setStorage('access_token', access_token);
+        setStorage('refresh_token', refresh_token);
+        router.push('/home');
+      })
+      .catch((errorResponse) => {
+        const errorMensage = errorResponse.response.status;
+        if (errorMensage === 401) {
+          setError('Email ou senha incorretos.');
+        } else {
+          setError('Algo deu errado. Tente mais tarde.');
+        }
+        setLoading(false);
+      });
   };
 
   return (

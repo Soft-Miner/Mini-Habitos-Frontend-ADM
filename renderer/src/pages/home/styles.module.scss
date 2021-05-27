@@ -1,9 +1,68 @@
 @import '../../styles/theme/colors.scss';
 
 .container {
+  background-color: $color-white;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  padding: 4rem;
+
+  h1 {
+    color: $color-pickled-bluewood;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .error {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: $color-cabaret;
+  }
+
+  .allCards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+
+    .habitCard {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+      background: $color-white;
+      box-shadow: 0rem 0.25rem 1rem $color-black-025;
+      border-radius: 0.5rem;
+      cursor: pointer;
+
+      transition: filter 0.2s;
+
+      &:hover {
+        filter: brightness(95%);
+      }
+
+      p {
+        flex: 1;
+        margin: 0 1rem;
+        font-weight: bold;
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  .logoutContainer {
+    position: absolute;
+    top: 4rem;
+    right: 4rem;
+    cursor: pointer;
+    display: flex;
+
+    p {
+      font-weight: bold;
+      font-size: 1.5rem;
+      color: $color-cabaret;
+      margin-left: 1rem;
+    }
+  }
 }

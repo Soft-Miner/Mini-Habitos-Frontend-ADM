@@ -1,0 +1,25 @@
+@import '../../styles/theme/colors.scss';
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background: #ffffff;
+  box-shadow: 0rem 0.25rem 1rem $color-black-025;
+  border-radius: 0.5rem;
+  cursor: pointer;
+
+  transition: filter 0.2s;
+
+  &:hover {
+    filter: brightness(95%);
+  }
+
+  p {
+    flex: 1;
+    margin: 0 1rem;
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+}

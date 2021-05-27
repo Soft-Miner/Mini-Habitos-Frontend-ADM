@@ -107,7 +107,6 @@ function Home() {
             name="password"
             label="Senha"
             placeholder="Senha"
-            error="alo minha gente"
             style={{ marginBottom: '1rem' }}
           />
 

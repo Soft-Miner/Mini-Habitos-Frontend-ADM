@@ -12,7 +12,7 @@ const Loading = () => {
             autoplay: true,
             animationData: logoAnimation,
           }}
-          isClickToPauseDisabled={true}
+          isClickToPauseDisabled
           speed={2.5}
         />
       </div>

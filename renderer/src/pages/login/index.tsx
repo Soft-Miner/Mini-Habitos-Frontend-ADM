@@ -4,23 +4,57 @@ import Lottie from 'react-lottie';
 import logoAnimation from '../../assets/lotties/Logo.json';
 import api from '../../services/api';
 import { useRouter } from 'next/router';
-import Input from '../../components/Input';
-import InputPassword from '../../components/InputPassword';
+import { Input, InputPassword } from '../../components/Inputs';
 import { setStorage } from '../../utils/storage';
+import Button from '../../components/Button';
+import { Form } from '@unform/web';
+import * as yup from 'yup';
+
+interface FormData {
+  password: string;
+  email: string;
+}
 
 function Home() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const formRef = useRef(null);
+
   const router = useRouter();
-  const inputEmailRef = useRef<HTMLInputElement>(null);
-  const inputPasswordRef = useRef<HTMLInputElement>(null);
 
-  const handleLogin = () => {
+  const handleSubmit = async ({ email, password }: FormData) => {
     setLoading(true);
-    const email = inputEmailRef.current.value;
-    const password = inputPasswordRef.current.value;
+    setError('');
+    formRef.current.setErrors({});
 
-    /** @TODO validar com yup */
+    const schema = yup.object().shape({
+      email: yup
+        .string()
+        .email('Email precisa ser um email válido.')
+        .required('Email é obrigatório.'),
+      password: yup.string().required('Senha é obrigatória.'),
+    });
+
+    try {
+      await schema.validate(
+        { email, password },
+        {
+          abortEarly: false,
+        }
+      );
+    } catch (error) {
+      const validationErrors = {};
+
+      if (error instanceof yup.ValidationError) {
+        error.inner.forEach((currentError) => {
+          validationErrors[currentError.path] = currentError.message;
+        });
+        formRef.current.setErrors(validationErrors);
+      }
+
+      setLoading(false);
+      return;
+    }
 
     api
       .post('/api/super_users/authenticate', {
@@ -56,33 +90,38 @@ function Home() {
               animationData: logoAnimation,
             }}
             isClickToPauseDisabled={true}
-            speed={0.8}
           />
         </div>
 
         <h1 className={styles.h1}>Entre para acessar a plataforma</h1>
 
-        <Input
-          inputRef={inputEmailRef}
-          label="Email"
-          placeholder="Email"
-          icon="/icons/emailIcon.svg"
-        />
-        <InputPassword
-          inputRef={inputPasswordRef}
-          label="Senha"
-          placeholder="Senha"
-        />
+        <Form ref={formRef} onSubmit={handleSubmit} style={{ width: '100%' }}>
+          <Input
+            name="email"
+            label="Email"
+            placeholder="Email"
+            icon="/icons/emailIcon.svg"
+            style={{ marginBottom: '1rem' }}
+          />
+          <InputPassword
+            name="password"
+            label="Senha"
+            placeholder="Senha"
+            error="alo minha gente"
+            style={{ marginBottom: '1rem' }}
+          />
 
-        {error && <span className={styles.error}>{error}</span>}
+          {error && <p className={styles.error}>{error}</p>}
 
-        <button
-          disabled={loading ? true : false}
-          className={styles.button}
-          onClick={handleLogin}
-        >
-          {loading ? 'Carregando...' : 'Continuar'}
-        </button>
+          <Button
+            variant="primary"
+            loading={loading}
+            disabled={loading}
+            style={{ marginTop: '1rem' }}
+          >
+            Entrar
+          </Button>
+        </Form>
       </div>
     </div>
   );

@@ -1,12 +1,16 @@
+import { useField } from '@unform/core';
 import {
   DetailedHTMLProps,
   InputHTMLAttributes,
   useState,
   FocusEvent,
   LegacyRef,
+  CSSProperties,
+  useRef,
+  useEffect,
 } from 'react';
 import { ReactSVG } from 'react-svg';
-import styles from './styles.module.scss';
+import styles from '../styles.module.scss';
 
 interface InputPasswordProps
   extends DetailedHTMLProps<
@@ -14,18 +18,40 @@ interface InputPasswordProps
     HTMLInputElement
   > {
   label: string;
+  name: string;
   inputRef?: LegacyRef<HTMLInputElement>;
+  error?: string;
+  style?: CSSProperties;
 }
 
-const InputPassword = ({
+export const InputPassword = ({
   label,
-  inputRef,
+  name,
+  style,
   onBlur,
   onFocus,
   ...rest
 }: InputPasswordProps) => {
-  const [isActive, setIsActive] = useState(false);
+  const { fieldName, defaultValue, registerField, error } = useField(name);
   const [passwordIsVisible, setPasswordIsVisible] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [isActive, setIsActive] = useState(false);
+
+  useEffect(() => {
+    registerField<HTMLInputElement>({
+      name: fieldName,
+      ref: inputRef,
+      getValue: (ref) => {
+        return ref.current.value;
+      },
+      setValue: (ref, value) => {
+        ref.current.value = value;
+      },
+      clearValue: (ref) => {
+        ref.current.value = '';
+      },
+    });
+  }, [fieldName, registerField]);
 
   const handleFocus = (event: FocusEvent<HTMLInputElement>) => {
     setIsActive(true);
@@ -50,13 +76,14 @@ const InputPassword = ({
   };
 
   return (
-    <div className={styles.container}>
-      <label className={isActive ? styles.active : ''}>
+    <div style={style} className={styles.container}>
+      <label className={error ? styles.error : isActive ? styles.active : ''}>
         {label}
 
         <div className={styles.inputContainer}>
           <input
             {...rest}
+            defaultValue={defaultValue}
             ref={inputRef}
             className={styles.input}
             onFocus={handleFocus}
@@ -75,6 +102,7 @@ const InputPassword = ({
           />
         </div>
       </label>
+      {error && <label className={styles.errorLabel}>{error}</label>}
     </div>
   );
 };

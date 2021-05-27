@@ -20,7 +20,6 @@ interface InputPasswordProps
   label: string;
   name: string;
   inputRef?: LegacyRef<HTMLInputElement>;
-  error?: string;
   style?: CSSProperties;
 }
 

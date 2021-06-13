@@ -30,6 +30,7 @@ module.exports = {
                 'https://mini-habitos-dev.s3-sa-east-1.amazonaws.com',
               ],
               imgSrc: [
+                'blob:',
                 "'self'",
                 'https://mini-habitos-dev.s3-sa-east-1.amazonaws.com',
               ],

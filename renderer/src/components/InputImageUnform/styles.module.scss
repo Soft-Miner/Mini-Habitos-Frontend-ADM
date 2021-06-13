@@ -9,6 +9,33 @@
     font-size: 0.875rem;
     text-align: center;
     color: $color-oslo-gray;
+
+    &.error {
+      color: $color-cabaret;
+    }
+  }
+
+  label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: bold;
+    font-size: 0.875rem;
+    line-height: 1.1875rem;
+    color: $color-oslo-gray;
+
+    &.error {
+      color: $color-cabaret;
+
+      input {
+        border: 0.125rem solid $color-cabaret;
+
+        & + .icon {
+          path {
+            fill: $color-cabaret;
+          }
+        }
+      }
+    }
   }
 
   .iconContainer {
@@ -53,5 +80,9 @@
 
   input {
     display: none;
+  }
+
+  .errorLabel {
+    color: $color-cabaret;
   }
 }

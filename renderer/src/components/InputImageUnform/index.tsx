@@ -1,16 +1,31 @@
-import { CSSProperties, useRef, useState } from 'react';
-import styles from './styles.module.scss';
+import React, { useRef, useEffect, useState, CSSProperties } from 'react';
+import { useField } from '@unform/core';
 import { ReactSVG } from 'react-svg';
+import styles from './styles.module.scss';
 
-interface InputFileProps {
+interface Props {
+  name: string;
   initialIcon?: string;
   onFileChange: (file: File | undefined) => void;
   style?: CSSProperties;
 }
 
-const InputFile = ({ onFileChange, initialIcon, style }: InputFileProps) => {
+type InputProps = JSX.IntrinsicElements['input'] & Props;
+
+export default function ImageInput({
+  name,
+  onFileChange,
+  initialIcon,
+  style,
+  ...rest
+}: InputProps) {
   const inputFileRef = useRef<HTMLInputElement>(null);
   const [imageUrl, setImageUrl] = useState(initialIcon || '');
+  const [isActive, setIsActive] = useState(false);
+
+  const { fieldName, registerField, defaultValue, error } = useField(name);
+
+  const [preview, setPreview] = useState(defaultValue);
 
   const handleFileChange = () => {
     const files = inputFileRef.current?.files;
@@ -28,13 +43,30 @@ const InputFile = ({ onFileChange, initialIcon, style }: InputFileProps) => {
     }
   };
 
+  useEffect(() => {
+    registerField({
+      name: fieldName,
+      ref: inputFileRef.current,
+      path: 'files[0]',
+      clearValue(ref: HTMLInputElement) {
+        ref.value = '';
+        setPreview(null);
+      },
+      setValue(_: HTMLInputElement, value: string) {
+        setPreview(value);
+      },
+    });
+  }, [fieldName, registerField]);
+
   const handleInputFile = () => {
     inputFileRef.current?.click();
   };
 
   return (
     <div style={style} className={styles.container}>
-      <p>Ícone</p>
+      <p className={error ? styles.error : isActive ? styles.active : ''}>
+        Ícone
+      </p>
       <div
         className={`${styles.iconContainer} ${imageUrl ? '' : styles.dashed}`}
         onClick={handleInputFile}
@@ -44,16 +76,17 @@ const InputFile = ({ onFileChange, initialIcon, style }: InputFileProps) => {
         ) : (
           <ReactSVG src="/icons/plus.svg" className={styles.plusIcon} />
         )}
-
+        {preview && <img src={preview} alt="Preview" width="100" />}
         <input
+          type="file"
           ref={inputFileRef}
           onChange={handleFileChange}
-          accept=".svg"
-          type="file"
+          accept="image/svg+xml"
+          {...rest}
         />
       </div>
+
+      {error && <label className={styles.errorLabel}>{error}</label>}
     </div>
   );
-};
-
-export default InputFile;
+}

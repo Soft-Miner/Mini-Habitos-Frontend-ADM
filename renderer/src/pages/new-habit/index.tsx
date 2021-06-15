@@ -146,6 +146,7 @@ const NewHabit = () => {
 
         <Form ref={formRef} onSubmit={handleSubmit}>
           <ImageInput
+            style={{ alignItems: 'center' }}
             name="icon"
             onFileChange={(file) => {
               file;

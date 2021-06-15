@@ -21,7 +21,7 @@ export default function ImageInput({
 }: InputProps) {
   const inputFileRef = useRef<HTMLInputElement>(null);
   const [imageUrl, setImageUrl] = useState(initialIcon || '');
-  const [isActive, setIsActive] = useState(false);
+  const [isActive] = useState(false);
 
   const { fieldName, registerField, defaultValue, error } = useField(name);
 
@@ -68,7 +68,9 @@ export default function ImageInput({
         Ícone
       </p>
       <div
-        className={`${styles.iconContainer} ${imageUrl ? '' : styles.dashed}`}
+        className={`${styles.iconContainer} ${
+          error ? styles.vermelho : imageUrl ? '' : styles.dashed
+        }`}
         onClick={handleInputFile}
       >
         {imageUrl ? (

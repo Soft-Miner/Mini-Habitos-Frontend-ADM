@@ -161,7 +161,7 @@ const NewHabit = () => {
 
           <TextArea
             name="description"
-            style={{ height: '137px' }}
+            style={{ height: '8.5625rem' }}
             placeholder="Descrição..."
             label="Descrição"
           ></TextArea>
@@ -199,7 +199,7 @@ const NewHabit = () => {
             />
             <TextArea
               name="challenges[0].description"
-              style={{ gridArea: 'inputDescr', height: '172px' }}
+              style={{ gridArea: 'inputDescr', height: '10.75rem' }}
               placeholder="Descrição..."
               label="Descrição"
             ></TextArea>
@@ -236,7 +236,7 @@ const NewHabit = () => {
                 />
                 <TextArea
                   name={`challenges[${index + 1}].description`}
-                  style={{ gridArea: 'inputDescr', height: '172px' }}
+                  style={{ gridArea: 'inputDescr', height: '10.75rem' }}
                   placeholder="Descrição..."
                   label="Descrição"
                 ></TextArea>
@@ -257,8 +257,8 @@ const NewHabit = () => {
             onClick={addChallenge}
             style={{
               alignSelf: 'center',
-              width: '359px',
-              marginTop: '22px',
+              width: '22.4375rem',
+              marginTop: '1.375rem',
             }}
             variant={'secondary'}
           >
@@ -271,10 +271,10 @@ const NewHabit = () => {
             disabled={loading}
             style={{
               alignSelf: 'center',
-              marginTop: '28px',
-              width: '360px',
+              marginTop: '1.75rem',
+              width: '22.5rem',
               height: '34px',
-              marginBottom: '16px',
+              marginBottom: '2.125rem',
             }}
           >
             Cadastrar

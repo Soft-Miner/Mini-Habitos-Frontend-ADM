@@ -25,16 +25,6 @@
 
     &.error {
       color: $color-cabaret;
-
-      input {
-        border: 0.125rem solid $color-cabaret;
-
-        & + .icon {
-          path {
-            fill: $color-cabaret;
-          }
-        }
-      }
     }
   }
 

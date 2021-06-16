@@ -9,6 +9,23 @@
     font-size: 0.875rem;
     text-align: center;
     color: $color-oslo-gray;
+
+    &.error {
+      color: $color-cabaret;
+    }
+  }
+
+  label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: bold;
+    font-size: 0.875rem;
+    line-height: 1.1875rem;
+    color: $color-oslo-gray;
+
+    &.error {
+      color: $color-cabaret;
+    }
   }
 
   .iconContainer {
@@ -51,7 +68,15 @@
     border: 0.125rem dashed $color-oslo-gray;
   }
 
+  .vermelho {
+    border: 0.125rem dashed $color-cabaret;
+  }
+
   input {
     display: none;
+  }
+
+  .errorLabel {
+    color: $color-cabaret;
   }
 }

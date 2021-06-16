@@ -1,13 +1,14 @@
-import { useRef, useState } from 'react';
+import { CSSProperties, useRef, useState } from 'react';
 import styles from './styles.module.scss';
 import { ReactSVG } from 'react-svg';
 
 interface InputFileProps {
   initialIcon?: string;
   onFileChange: (file: File | undefined) => void;
+  style?: CSSProperties;
 }
 
-const InputFile = ({ onFileChange, initialIcon }: InputFileProps) => {
+const InputFile = ({ onFileChange, initialIcon, style }: InputFileProps) => {
   const inputFileRef = useRef<HTMLInputElement>(null);
   const [imageUrl, setImageUrl] = useState(initialIcon || '');
 
@@ -32,7 +33,7 @@ const InputFile = ({ onFileChange, initialIcon }: InputFileProps) => {
   };
 
   return (
-    <div className={styles.container}>
+    <div style={style} className={styles.container}>
       <p>Ícone</p>
       <div
         className={`${styles.iconContainer} ${imageUrl ? '' : styles.dashed}`}
@@ -47,7 +48,7 @@ const InputFile = ({ onFileChange, initialIcon }: InputFileProps) => {
         <input
           ref={inputFileRef}
           onChange={handleFileChange}
-          accept="image/svg+xml"
+          accept=".svg"
           type="file"
         />
       </div>

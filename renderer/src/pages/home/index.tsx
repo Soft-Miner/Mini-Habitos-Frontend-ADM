@@ -31,7 +31,7 @@ function Home() {
   };
 
   const goToCreateHabit = () => {
-    router.push(`/new-habit`);
+    router.push('/new-habit');
   };
 
   useEffect(() => {

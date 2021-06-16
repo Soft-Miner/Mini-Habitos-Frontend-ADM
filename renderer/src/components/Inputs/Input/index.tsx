@@ -18,7 +18,7 @@ interface InputProps
   > {
   label: string;
   name: string;
-  icon: string;
+  icon?: string;
   style?: CSSProperties;
 }
 
@@ -82,7 +82,7 @@ export const Input = ({
             onBlur={handleBlur}
           ></input>
 
-          <ReactSVG className={styles.icon} src={icon} />
+          {icon && <ReactSVG className={styles.icon} src={icon} />}
         </div>
       </label>
       {error && <label className={styles.errorLabel}>{error}</label>}

@@ -70,6 +70,7 @@ function Home() {
       })
       .catch((errorResponse) => {
         const errorMensage = errorResponse.response.status;
+
         if (errorMensage === 401) {
           setError('Email ou senha incorretos.');
         } else {

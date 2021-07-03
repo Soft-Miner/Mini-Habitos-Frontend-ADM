@@ -10,6 +10,7 @@ import ImageInput from '../../components/InputImageUnform/index';
 import api from '../../services/api';
 import { getStorage } from '../../utils/storage/getStorage';
 import { useRouter } from 'next/router';
+import GoBackArrow from '../../components/GoBackArrow';
 
 interface Challenge {
   description: string;
@@ -157,7 +158,7 @@ const NewHabit = () => {
             name="name"
             label="Nome"
             placeholder="Nome"
-            style={{ marginBottom: '2rem' }}
+            style={{ marginBottom: '1rem' }}
           />
 
           <TextArea
@@ -167,7 +168,7 @@ const NewHabit = () => {
             label="Descrição"
           ></TextArea>
 
-          <h1 className={styles.desafio}>Desafios</h1>
+          <h1 className={styles.challengeTitle}>Desafios</h1>
 
           <div className={styles.fixedChallenge}>
             <Input
@@ -282,6 +283,7 @@ const NewHabit = () => {
           </Button>
         </Form>
       </div>
+      <GoBackArrow />
     </div>
   );
 };

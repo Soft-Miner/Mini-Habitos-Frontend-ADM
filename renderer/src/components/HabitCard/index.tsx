@@ -1,4 +1,3 @@
-import { ReactSVG } from 'react-svg';
 import styles from './styles.module.scss';
 
 interface HabitCardProps {

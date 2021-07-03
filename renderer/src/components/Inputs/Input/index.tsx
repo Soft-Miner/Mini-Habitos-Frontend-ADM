@@ -74,12 +74,12 @@ export const Input = ({
 
         <div className={styles.inputContainer}>
           <input
-            {...rest}
             defaultValue={defaultValue}
             ref={inputRef}
             className={styles.input}
             onFocus={handleFocus}
             onBlur={handleBlur}
+            {...rest}
           ></input>
 
           {icon && <ReactSVG className={styles.icon} src={icon} />}

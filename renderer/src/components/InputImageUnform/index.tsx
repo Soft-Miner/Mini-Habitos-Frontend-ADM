@@ -5,8 +5,9 @@ import styles from './styles.module.scss';
 
 interface Props {
   name: string;
+  icon?: string;
   initialIcon?: string;
-  onFileChange: (file: File | undefined) => void;
+  onFileChange?: (file: File | undefined) => void;
   style?: CSSProperties;
 }
 
@@ -16,6 +17,7 @@ export default function ImageInput({
   name,
   onFileChange,
   initialIcon,
+  icon,
   style,
   ...rest
 }: InputProps) {
@@ -35,10 +37,14 @@ export default function ImageInput({
       const file = (files as FileList).item(0);
       const fileUrl = URL.createObjectURL(file);
 
-      onFileChange(file);
+      if (onFileChange) {
+        onFileChange(file);
+      }
       setImageUrl(fileUrl);
     } else {
-      onFileChange(undefined);
+      if (onFileChange) {
+        onFileChange(undefined);
+      }
       setImageUrl('');
     }
   };
@@ -69,12 +75,12 @@ export default function ImageInput({
       </p>
       <div
         className={`${styles.iconContainer} ${
-          error ? styles.vermelho : imageUrl ? '' : styles.dashed
+          error ? styles.redDashed : imageUrl || icon ? '' : styles.dashed
         }`}
         onClick={handleInputFile}
       >
-        {imageUrl ? (
-          <img className={styles.icon} src={imageUrl} alt="Icon" />
+        {imageUrl || icon ? (
+          <img className={styles.icon} src={icon || imageUrl} alt="Icon" />
         ) : (
           <ReactSVG src="/icons/plus.svg" className={styles.plusIcon} />
         )}

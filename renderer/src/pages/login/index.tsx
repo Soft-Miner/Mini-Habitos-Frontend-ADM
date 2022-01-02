@@ -99,8 +99,8 @@ function Home() {
         <Form ref={formRef} onSubmit={handleSubmit} style={{ width: '100%' }}>
           <Input
             name="email"
-            label="Email"
-            placeholder="Email"
+            label="mail"
+            placeholder="mail"
             icon="/icons/emailIcon.svg"
             style={{ marginBottom: '1rem' }}
           />

@@ -58,7 +58,7 @@ function Home() {
 
   return (
     <div className={styles.container}>
-      <h1>Estes são todos os mini-hábitos</h1>
+      <h1>Estes são mini habitos</h1>
 
       {error ? (
         <p className={styles.error}>{error}</p>

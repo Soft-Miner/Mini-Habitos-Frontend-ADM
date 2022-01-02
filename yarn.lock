@@ -1426,13 +1426,6 @@
   dependencies:
     dot-object "^2.1.4"
 
-"@unform/mobile@^2.1.6":
-  version "2.1.6"
-  resolved "https://registry.yarnpkg.com/@unform/mobile/-/mobile-2.1.6.tgz#d55bfd2a943662a5783287dbe8d2639792d55c47"
-  integrity sha512-ny5xnzj0tFSRISALgc6dUikG6LSeS1SOKCzYXdV625yZ1r72lc7RUExeps3gmHjdvALeXHQodtot/DuFoBSh3w==
-  dependencies:
-    "@unform/core" "2.1.6"
-
 "@unform/web@^2.1.6":
   version "2.1.6"
   resolved "https://registry.yarnpkg.com/@unform/web/-/web-2.1.6.tgz#8870c5f2f70828d246457cb155fdf825ad9bba03"
